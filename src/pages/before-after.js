@@ -7,7 +7,7 @@ export default function index(props) {
     const { markdownRemark } = data;
 
     return (
-        <Layout location={props.location} title='Kingston Vasectomy'>
+        <Layout location={props.location} title='Before-After'>
             <div dangerouslySetInnerHTML={{__html : markdownRemark.html }} />
         </Layout>
     )
@@ -17,7 +17,7 @@ export const query = graphql `
 query {
     markdownRemark(frontmatter: {
             title: {
-                eq: "home"
+                eq: "before-after"
             }
         }) {
         html
