@@ -4,23 +4,19 @@ import { graphql } from 'gatsby';
 
 export default function index(props) {
     const { data } = props;
-    const { markdownRemark } = data;
+    const { wordpressPage } = data;
 
     return (
         <Layout location={props.location} title='About'>
-            <div dangerouslySetInnerHTML={{__html : markdownRemark.html }} />
+            <div dangerouslySetInnerHTML={{__html : wordpressPage.content }} />
         </Layout>
     )
 }
 
 export const query = graphql `
 query {
-    markdownRemark(frontmatter: {
-            title: {
-                eq: "about"
-            }
-        }) {
-        html
-    }
+  wordpressPage(title: {eq: "About Us"}) {
+    content
+  }
 }
 `

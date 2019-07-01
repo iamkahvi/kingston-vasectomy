@@ -16,7 +16,7 @@ const BodyFrame = styled.div`
     }
 `
 const BigFrame = styled.div`
-    max-width: 64rem;
+    max-width: 48rem;
     margin-right: auto;
     margin-left: auto;
     padding: 1rem;
