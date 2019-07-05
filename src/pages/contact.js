@@ -4,18 +4,21 @@ import { graphql } from 'gatsby';
 
 export default function index(props) {
     const { data } = props;
-    const { wordpressPage } = data;
+    const { english, french } = data;
 
     return (
         <Layout location={props.location} title='Contact'>
-            <div dangerouslySetInnerHTML={{ __html: wordpressPage.content }} />
+            <div dangerouslySetInnerHTML={{ __html: english.content }} />
         </Layout>
     )
 }
 
 export const query = graphql `
 query {
-  wordpressPage(title: {eq: "Contact Us"}) {
+  english: wordpressPage(title: {eq: "Contact Us"}) {
+    content
+  }
+  french: wordpressPage(title: {eq: "Contactez-nous"}) {
     content
   }
 }

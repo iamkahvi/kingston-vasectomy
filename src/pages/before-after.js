@@ -1,22 +1,32 @@
-import React from "react";
-import Layout from '../components/Layout';
-import { graphql } from 'gatsby';
+import React, { useState } from "react"
+import Layout from "../components/Layout"
+import { graphql } from "gatsby"
 
 export default function index(props) {
-    const { data } = props;
-    const { wordpressPage } = data;
+  const { data } = props
+  const { english, french } = data
 
-    return (
-        <Layout location={props.location} title='Before-After'>
-            <div dangerouslySetInnerHTML={{ __html: wordpressPage.content }} />
-        </Layout>
-    )
-}
+  const [language, setLanguage] = useState(english)
 
-export const query = graphql `
-query {
-  wordpressPage(title: {eq: "Before / After"}) {
-    content
+  function switchLang() {
+    setLanguage(language === english ? french : english)
   }
+
+  return (
+    <Layout location={props.location} title="Before-After">
+      <button onClick={switchLang}>Toggle language</button>
+      <div dangerouslySetInnerHTML={{ __html: language.content }} />
+    </Layout>
+  )
 }
+
+export const query = graphql`
+  query {
+    english: wordpressPage(title: { eq: "Before / After" }) {
+      content
+    }
+    french: wordpressPage(title: { eq: "Avant / Après" }) {
+      content
+    }
+  }
 `
