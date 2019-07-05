@@ -1,6 +1,7 @@
 import React, { useState } from "react"
-import Layout from "../components/Layout"
+import Layout, { options, SwitchButton } from "../components/Layout"
 import { graphql } from "gatsby"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 export default function Procedure(props) {
   const { data, location } = props
@@ -14,19 +15,29 @@ export default function Procedure(props) {
 
   return (
     <Layout location={location} title="Procedure">
-      <button onClick={switchLang}>Toggle language</button>
-      <div dangerouslySetInnerHTML={{ __html: language.content }} />
+      <SwitchButton
+        switchFunction={switchLang}
+        language={language}
+        english={english}
+      />
+      {documentToReactComponents(language.body.json, options)}
     </Layout>
   )
 }
 
 export const query = graphql`
   query {
-    english: wordpressPage(title: { eq: "Procedure FAQ" }) {
-      content
+    english: contentfulPage(title: { eq: "Procedure" }) {
+      body {
+        json
+      }
+      title
     }
-    french: wordpressPage(title: { eq: "Opération / FAQ" }) {
-      content
+    french: contentfulPage(title: { eq: "Opération" }) {
+      body {
+        json
+      }
+      title
     }
   }
 `

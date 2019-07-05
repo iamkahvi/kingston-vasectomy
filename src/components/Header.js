@@ -62,11 +62,7 @@ export default function Header(props) {
         <StyledLink activeStyle={activeLinkStyle} to="/">
           Home
         </StyledLink>
-        <StyledLink
-          activeStyle={activeLinkStyle}
-          state={{ language: "eng" }}
-          to="/procedure"
-        >
+        <StyledLink activeStyle={activeLinkStyle} to="/procedure">
           Procedure
         </StyledLink>
         <StyledLink activeStyle={activeLinkStyle} to="/before-after">
